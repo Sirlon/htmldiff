@@ -20,6 +20,10 @@ module HTMLDiff
       @content = []
     end
 
+    def set_noDelTag(nodeltag)
+      @noDelTag = nodeltag
+    end
+
     def build
       split_inputs_to_words
       index_new_words
@@ -178,7 +182,10 @@ module HTMLDiff
     end
     
     def delete(operation, tagclass = 'diffdel')
-       insert_tag('del', tagclass, @old_words[operation.start_in_old...operation.end_in_old])
+      if !@noDelTag.eql?("true")
+         insert_tag('del', tagclass, @old_words[operation.start_in_old...operation.end_in_old])
+      end
+     
     end
     
     def equal(operation)
@@ -311,6 +318,12 @@ module HTMLDiff
   
   def diff(a, b)
     DiffBuilder.new(a, b).build
+  end
+
+  def diff(a, b, c)
+    diffBuilder = DiffBuilder.new(a, b)
+    diffBuilder.set_noDelTag(c)
+    diffBuilder.build
   end
 
 end
