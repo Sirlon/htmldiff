@@ -5,7 +5,7 @@ require 'date'
 require 'spec/rake/spectask'
 
 GEM = "htmldiff"
-GEM_VERSION = "0.0.1"
+GEM_VERSION = "0.0.2"
 AUTHOR = "Nathan Herald"
 EMAIL = "nathan@myobie.com"
 HOMEPAGE = "http://github.com/myobie/htmldiff"
