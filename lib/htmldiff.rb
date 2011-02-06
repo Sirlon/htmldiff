@@ -15,13 +15,10 @@ module HTMLDiff
 
   class DiffBuilder
 
-    def initialize(old_version, new_version)
+    def initialize(old_version, new_version, no_del_tags)
       @old_version, @new_version = old_version, new_version
+      @no_del_tags = no_del_tags
       @content = []
-    end
-
-    def set_noDelTag(nodeltag)
-      @noDelTag = nodeltag
     end
 
     def build
@@ -182,10 +179,9 @@ module HTMLDiff
     end
     
     def delete(operation, tagclass = 'diffdel')
-      if !@noDelTag.eql?("true")
+      if no_del_tags == false
          insert_tag('del', tagclass, @old_words[operation.start_in_old...operation.end_in_old])
       end
-     
     end
     
     def equal(operation)
@@ -317,13 +313,11 @@ module HTMLDiff
   end # of class Diff Builder
   
   def diff(a, b)
-    DiffBuilder.new(a, b).build
+    DiffBuilder.new(a, b, false).build
   end
 
   def diff(a, b, c)
-    diffBuilder = DiffBuilder.new(a, b)
-    diffBuilder.set_noDelTag(c)
-    diffBuilder.build
+    DiffBuilder.new(a, b, c).build
   end
 
 end
