@@ -179,7 +179,7 @@ module HTMLDiff
     end
     
     def delete(operation, tagclass = 'diffdel')
-      if no_del_tags == false
+      if @no_del_tags == false
          insert_tag('del', tagclass, @old_words[operation.start_in_old...operation.end_in_old])
       end
     end
