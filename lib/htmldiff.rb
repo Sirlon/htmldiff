@@ -283,7 +283,7 @@ module HTMLDiff
             words << current_word unless current_word.empty?
             current_word = (use_brackets ? '[' : '<')
             mode = :tag
-          elsif /\s/.match char
+          elsif /\s/.match char or '.'.match char
             words << current_word unless current_word.empty?
             current_word = char
             mode = :whitespace
@@ -295,7 +295,7 @@ module HTMLDiff
             words << current_word unless current_word.empty?
             current_word = (use_brackets ? '[' : '<')
             mode = :tag
-          elsif /\s/.match char
+          elsif /\s/.match char or '.'.match char
             current_word << char
           else
             words << current_word unless current_word.empty?
