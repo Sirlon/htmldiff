@@ -311,12 +311,8 @@ module HTMLDiff
     end
 
   end # of class Diff Builder
-  
-  def diff(a, b)
-    DiffBuilder.new(a, b, false).build
-  end
 
-  def diff(a, b, c)
+  def diff(a, b, c = false)
     DiffBuilder.new(a, b, c).build
   end
 
