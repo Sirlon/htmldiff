@@ -190,7 +190,7 @@ module HTMLDiff
     end
   
     def opening_tag?(item)
-      item =~ %r!^\s*<[^>]+>\s*$!
+      item =~ %r!^\s*<[^>]+>\s*$! 
     end
 
     def closing_tag?(item)
@@ -283,7 +283,7 @@ module HTMLDiff
             words << current_word unless current_word.empty?
             current_word = (use_brackets ? '[' : '<')
             mode = :tag
-          elsif /\s/.match char or '.'.match char
+          elsif /\s/.match char or '.' == char
             words << current_word unless current_word.empty?
             current_word = char
             mode = :whitespace
@@ -295,7 +295,7 @@ module HTMLDiff
             words << current_word unless current_word.empty?
             current_word = (use_brackets ? '[' : '<')
             mode = :tag
-          elsif /\s/.match char or '.'.match char
+          elsif /\s/.match char or '.' == char
             current_word << char
           else
             words << current_word unless current_word.empty?
@@ -313,7 +313,15 @@ module HTMLDiff
   end # of class Diff Builder
 
   def diff(a, b, c = false)
-    DiffBuilder.new(a, b, c).build
+    begin
+      ret = DiffBuilder.new(a, b, c).build
+      puts ret
+      return ret
+    rescue Exception => exc
+      puts 'caught exception from DiffBuilder'
+      puts exc.message
+      puts exc.backtrace
+    end      
   end
 
 end

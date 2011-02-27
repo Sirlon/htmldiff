@@ -15,5 +15,5 @@ Stuff.diff('a word is here', 'a nother word is there')
 Checkout the crappy specs for good examples. 
 
 
-bogormn
+bogorman
 Added a third boolean param to exclude del tags.

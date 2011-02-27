@@ -29,4 +29,16 @@ describe "htmldiff" do
     diff.should == "a <del class=\"diffmod\">b</del><ins class=\"diffmod\">d</ins> c"
   end
   
+  it "should change a *" do
+    diff = TestDiff.diff('a _ c', 'a * c')
+    diff.should == "a <del class=\"diffmod\">_</del><ins class=\"diffmod\">*</ins> c"
+  end
+  
+  it "should change a ." do
+    diff = TestDiff.diff('a b c', 'a b c .')
+    diff.should == "a b c<ins class=\"diffins\"> .</ins>"
+  end
+  
+  
+  
 end
