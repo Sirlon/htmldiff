@@ -314,9 +314,7 @@ module HTMLDiff
 
   def diff(a, b, c = false)
     begin
-      ret = DiffBuilder.new(a, b, c).build
-      puts ret
-      return ret
+      DiffBuilder.new(a, b, c).build
     rescue Exception => exc
       puts 'caught exception from DiffBuilder'
       puts exc.message
