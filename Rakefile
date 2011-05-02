@@ -4,8 +4,8 @@ require 'rubygems/specification'
 require 'date'
 require 'rspec/core/rake_task'
 
-GEM = "htmldiff"
-GEM_VERSION = "0.0.2"
+GEM = "sirlon-htmldiff"
+GEM_VERSION = "0.0.3"
 AUTHOR = "Nathan Herald"
 EMAIL = "nathan@myobie.com"
 HOMEPAGE = "http://github.com/myobie/htmldiff"
