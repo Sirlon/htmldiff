@@ -1,4 +1,4 @@
-module HTMLDiff
+class HTMLDiff
 
   Match = Struct.new(:start_in_old, :start_in_new, :size)
   class Match
@@ -255,7 +255,7 @@ module HTMLDiff
     end
     
     def whitespace?(char)
-      char =~ /\s/
+      char =~ /(\s|\n\r?)/
     end
   
     def convert_html_to_list_of_words(x, use_brackets = false)
@@ -311,6 +311,12 @@ module HTMLDiff
     end
 
   end # of class Diff Builder
+    
+    def HTMLDiff.diff(a, b)
+        
+        HTMLDiff.new.diff(a, b)
+        
+    end
 
   def diff(a, b, c = false)
     begin
